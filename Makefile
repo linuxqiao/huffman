@@ -10,7 +10,7 @@ all : ${OBJECT}
 	${CC} ${OBJECT} -o huffman
 
 huffman.o : huffman.c ${INCLUDE}
-	${CC} -c -g huffman.c
+	${CC} -c huffman.c
 
 clean : 
 	${RM} ${OBJECT} huffman

@@ -48,20 +48,21 @@ int main(int argc, char *argv[])
 		if (strcmp("-c", argv[1]) == 0)
 		{
 			CompressFiles(argv[2], argv[3]);
+			finish = clock();
+			printf("程序运行时间：%.4f 秒\n", (double)(finish - start) / CLOCKS_PER_SEC);
+
 		}
 		else if (strcmp("-d", argv[1]) == 0)
 		{
 			DecompressFiles(argv[2], argv[3]);
+			finish = clock();
+			printf("程序运行时间：%.4f 秒\n", (double)(finish - start) / CLOCKS_PER_SEC);
 		}
 		else
 		{
 			PrintUseageInfo(argv[2]);
 		}
 	}
-
-	finish = clock();
-
-	printf("程序运行时间：%.4f 秒\n", (double)(finish - start) / CLOCKS_PER_SEC);
 
 	return EXIT_SUCCESS;
 }
@@ -396,7 +397,7 @@ void FreeHuffmanCode(int size)
 	}
 }
 
-int StrToNum(char *str, int size)
+inline int StrToNum(char *str, int size)
 {
 	int sum = 0, i;
 
@@ -409,7 +410,7 @@ int StrToNum(char *str, int size)
 	return sum;
 }
 
-void NumToStr(int num, char *str)
+inline void NumToStr(int num, char *str)
 { 
 	int i = 7, tmp;
 
