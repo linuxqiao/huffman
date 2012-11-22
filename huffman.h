@@ -69,6 +69,9 @@ void CompressFiles(char *input_file, char *output_file);
 // 解压缩文件函数
 void DecompressFiles(char *input_file, char *output_file);
 
+// 显示压缩文件信息函数
+void PrintHzFileInfo(char *input_file);
+
 // 二进制字符串转换十进制数字
 int StrToNum(char *str, int size);
 

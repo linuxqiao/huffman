@@ -39,7 +39,7 @@ int main(int argc, char *argv[])
 
 	start = clock();
 
-	if (argc != 4)
+	if (argc < 3)
 	{
 		PrintUseageInfo(argv[0]+2);
 	}
@@ -58,9 +58,13 @@ int main(int argc, char *argv[])
 			finish = clock();
 			printf("程序运行时间：%.4f 秒\n", (double)(finish - start) / CLOCKS_PER_SEC);
 		}
+		else if (strcmp("-r", argv[1]) == 0)
+		{
+			PrintHzFileInfo(argv[2]);
+		}
 		else
 		{
-			PrintUseageInfo(argv[2]);
+			PrintUseageInfo(argv[0]+2);
 		}
 	}
 
@@ -301,6 +305,26 @@ void DecompressFiles(char *input_file, char *output_file)
 	remove(tmp_file);
 }
 
+void PrintHzFileInfo(char *input_file)
+{
+	FILE 		*fp_input;
+	HzFileInfo 	HzInfo;
+
+	if ((fp_input = fopen(input_file, "rb")) == NULL ) {
+		fprintf(stderr, "Cannot open file %s !\n", input_file);
+		exit(0);
+	}
+
+	// 读取文件头信息
+	fread(&HzInfo, sizeof(HzInfo), 1, fp_input);
+
+	printf("在压缩文件 %s 中：\n", input_file);
+	printf("\t被压缩的原文件名：%s\n", HzInfo.file_name);
+	printf("\t被压缩的文件大小: %u 字节\n", HzInfo.prev_file_size);
+
+	fclose(fp_input);
+}
+
 void CrtHuffmanTree(HTNode *HuffmanTree, int tree_size, int *weight, int size)
 {
 	int i, elem_size = 0, node1 = 1, node2 = 2;
@@ -419,12 +443,11 @@ inline void NumToStr(int num, char *str)
 	{ 
 		str[i--]= tmp % 2 + '0';
 	}
-	str[8] = '\0';
 }
 
-void PrintUseageInfo(char *str)
+inline void PrintUseageInfo(char *str)
 {
 	printf("\n错误：命令格式错误！\n\n用法：%s -[参数] 输入文件 输出文件\n", str);
 	puts("\n程序说明：一个使用 Huffman 算法进行文件压缩的小程序，目前仅支持单文件压缩。\n");
-	puts("参数：\n\t-c : 压缩\n\t-d : 解压缩\n");
+	puts("参数：\n\t-c : 压缩文件\n\t-d : 解压缩文件\n\n\t-r : 查看压缩文件信息\n");
 }
