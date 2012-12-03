@@ -35,9 +35,9 @@ char str_code_cover[ELEM_SIZE+1][50];
 
 int main(int argc, char *argv[])
 {
-	clock_t start, finish;
+	clock_t start_time, finish_time;
 
-	start = clock();
+	start_time = clock();
 
 	if (argc < 3)
 	{
@@ -48,15 +48,15 @@ int main(int argc, char *argv[])
 		if (strcmp("-c", argv[1]) == 0)
 		{
 			CompressFiles(argv[2], argv[3]);
-			finish = clock();
-			printf("程序运行时间：%.4f 秒\n", (double)(finish - start) / CLOCKS_PER_SEC);
+			finish_time = clock();
+			printf("程序运行时间：%.4f 秒\n", (double)(finish_time - start_time) / CLOCKS_PER_SEC);
 
 		}
 		else if (strcmp("-d", argv[1]) == 0)
 		{
 			DecompressFiles(argv[2], argv[3]);
-			finish = clock();
-			printf("程序运行时间：%.4f 秒\n", (double)(finish - start) / CLOCKS_PER_SEC);
+			finish_time = clock();
+			printf("程序运行时间：%.4f 秒\n", (double)(finish_time - start_time) / CLOCKS_PER_SEC);
 		}
 		else if (strcmp("-r", argv[1]) == 0)
 		{
