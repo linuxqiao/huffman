@@ -194,7 +194,7 @@ void CompressFiles(char *input_file, char *output_file)
 	
 	fclose(fp_output);
 
-	printf("压缩后的文件 %s 已生成。 ", output_file); 
+	printf("压缩后的文件 %s 已生成。 ", output_file);
 	printf("压缩率：%.2f %%\n", (double)output_file_size / input_file_size * 100);
 
 	fclose(fp_tmp);
@@ -273,10 +273,10 @@ void DecompressFiles(char *input_file, char *output_file)
 	
 	fseek(fp_tmp, 0, SEEK_SET);
 
-	do
+	while (TRUE)
 	{
 		i = huffman_root;
-		while (HuffmanTree[i].LChild != 0 &&  (ch = fgetc(fp_tmp)) != EOF)
+		while (HuffmanTree[i].LChild != 0 && (ch = fgetc(fp_tmp)) != EOF)
 		{
 			tag++;
 			if (ch == '1')
@@ -293,9 +293,10 @@ void DecompressFiles(char *input_file, char *output_file)
 				exit(0);
 			}
 		}
-		if (ch == EOF )
+		if (ch == EOF)
 			break;
-	}while(fputc(i-1, fp_output));
+		fputc(i-1, fp_output);
+	}
 
 	fclose(fp_output);
 
