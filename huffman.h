@@ -19,7 +19,7 @@
 #ifndef HUFFMAN_H_
 #define HUFFMAN_H_
 
-#define ELEM_SIZE  (256) 			// 叶子节点的最大值
+#define ELEM_SIZE  (256) 					// 叶子节点的最大值
 #define BUFF_SIZE  (2 * ELEM_SIZE - 1) 		// 所有节点的最大值
 
 #ifndef TRUE
@@ -82,4 +82,3 @@ void NumToStr(int num, char *str);
 void PrintUseageInfo(char *str);
 
 #endif // HUFFMAN_H_
-

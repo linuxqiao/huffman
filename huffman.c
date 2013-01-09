@@ -71,6 +71,13 @@ int main(int argc, char *argv[])
 	return EXIT_SUCCESS;
 }
 
+inline void PrintUseageInfo(char *str)
+{
+	printf("\n错误：命令格式错误！\n\n用法：%s -[参数] 输入文件 输出文件\n", str);
+	puts("\n程序说明：一个使用 Huffman 算法进行文件压缩的小程序，目前仅支持单文件压缩。\n");
+	puts("参数：\n\t-c : 压缩文件\n\t-d : 解压缩文件\n\n\t-r : 查看压缩文件信息\n");
+}
+
 void CompressFiles(char *input_file, char *output_file)
 {
 	int 		i, ch;
@@ -444,11 +451,4 @@ inline void NumToStr(int num, char *str)
 	{ 
 		str[i--]= tmp % 2 + '0';
 	}
-}
-
-inline void PrintUseageInfo(char *str)
-{
-	printf("\n错误：命令格式错误！\n\n用法：%s -[参数] 输入文件 输出文件\n", str);
-	puts("\n程序说明：一个使用 Huffman 算法进行文件压缩的小程序，目前仅支持单文件压缩。\n");
-	puts("参数：\n\t-c : 压缩文件\n\t-d : 解压缩文件\n\n\t-r : 查看压缩文件信息\n");
 }
